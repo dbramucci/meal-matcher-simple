@@ -21,6 +21,7 @@ description:         Please see the README on Github at <https://github.com/dbra
 
 dependencies:
 - base >= 4.7 && < 5
+- containers
 
 library:
   source-dirs: src
@@ -30,12 +31,13 @@ executables:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
-    - -Wall  
+    - -Wall
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
     - meal-matcher-simple
+    - containers
 
 tests:
   meal-matcher-simple-test:
@@ -47,3 +49,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - meal-matcher-simple
+    - containers

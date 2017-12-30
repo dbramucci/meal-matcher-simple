@@ -11,9 +11,8 @@ type Resturant = String
 data Person = Person Name [Resturant]
 
 potentialPatrons :: [Person] -> M.Map Resturant [Person]
-potentialPatrons people = foldl addToMap M.empty people
-    where addToMap :: M.Map Resturant [Person] -> Person -> M.Map Resturant [Person]
-          addToMap m p@(Person name rests) = foldl (\m r -> M.alter (\x -> Just $ p:fromMaybe [] x) r m) m rests
-
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+potentialPatrons = foldl perPerson M.empty
+    where perPerson :: M.Map Resturant [Person] -> Person -> M.Map Resturant [Person]
+          perPerson m p@(Person _ rests) = foldl (perResturant p) m rests
+          perResturant :: Person -> M.Map Resturant [Person] -> Resturant -> M.Map Resturant [Person]
+          perResturant p = flip $ M.alter (\x -> Just $ p:fromMaybe [] x)

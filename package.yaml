@@ -1,0 +1,48 @@
+name:                meal-matcher-simple
+version:             0.1.0.0
+github:              "dbramucci/meal-matcher-simple"
+license:             BSD3
+author:              "Danny Bramucci"
+maintainer:          "dbramuccicode@gmail.com"
+copyright:           "None"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            Short description of your package
+# category:            Unclassified
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on Github at <https://github.com/dbramucci/meal-matcher-simple#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  meal-matcher-simple-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - meal-matcher-simple
+
+tests:
+  meal-matcher-simple-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - meal-matcher-simple

@@ -34,14 +34,14 @@ possibleAnswers (p:people) = do
   ans <- possibleAnswers people
   return $ M.alter (\x -> Just $ name:fromMaybe [] x) r ans
 
-bestSolutions :: [Person] -> [(Int, M.Map Resturant [Name])]
-bestSolutions people = case allSolutions of
+bestSolutions :: [Person] -> [M.Map Resturant [Name]]
+bestSolutions people = map snd $ case allSolutions of
                            [] -> []
                            (n, _):_ -> takeWhile (\(x, _)
                             -> x == n) allSolutions
   where allSolutions = reverse . map (\x -> (numberOfHappy x, x)) $
                         sortOn numberOfHappy $
-                        possibleAnswers . sortOn (\(Person _ rs) -> length rs) . filterOutSingles $ people
+                        possibleAnswers . filterOutSingles $ people -- sortOn (\(Person _ rs) -> length rs) .
 
 numberOfHappy :: M.Map Resturant [Name] -> Int
 numberOfHappy = M.foldl' (\s x -> if length x > 1 then s + length x else s) 0

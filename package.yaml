@@ -23,6 +23,8 @@ dependencies:
 - base >= 4.7 && < 5
 - containers
 - split
+- QuickCheck >= 2.10.1 && < 2.11
+- hspec >= 2.4.4 && < 2.5
 
 library:
   source-dirs: src
@@ -53,3 +55,5 @@ tests:
     dependencies:
     - meal-matcher-simple
     - containers
+    - QuickCheck
+    - hspec

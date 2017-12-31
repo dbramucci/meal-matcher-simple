@@ -109,3 +109,38 @@ Solutions
     * Adam, Bruce
   * Taco Bell
     * Catherine, Ellis
+
+# Using the provided executable
+The provided executable is to be run from the command line.
+Type the number of people in first and hit enter.
+Then for each person, type their name, `:` and a comma separated list of
+restaurants they would like to attend, hitting enter between people.
+
+```
+>>./meal-matcher-simple.exe
+<number of people>
+<name>: <rest1>, <rest2>, <rest3>, <restn>
+<name>: <rest1>, <rest2>, <rest3>, <restn>
+```
+
+Example
+```
+
+>>./meal-matcher-simple.exe
+>>6
+>>Adam: McDonalds
+>>Bruce: McDonalds, Taco Bell
+>>Catherine: Taco Bell
+>>Ellis: Taco Bell, Long John Silvers
+>>Ferris: Long John Silvers
+>>Geralt: Long John Slivers
+Solution:
+Long John Silvers: Ellis, Ferris
+Taco Bell: Bruce, Catherine
+Solution:
+Long John Silvers: Ellis, Ferris
+McDonalds: Adam, Bruce
+Solution:
+McDonalds: Adam, Bruce
+Taco Bell: Catherine, Ellis
+```

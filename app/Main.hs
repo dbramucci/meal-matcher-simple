@@ -7,19 +7,6 @@ import           Data.List.Split (splitOn)
 import qualified Data.Map        as M
 import           Lib
 
-t = [Person "Danny" ["TB", "BK"],
-     Person "Sarah" ["TB"],
-     Person "Cham" ["TB", "BK", "5G"],
-     Person "Joe"   ["BK"],
-     Person "Sisu"  ["5G"],
-     Person "Bob"   ["5G", "TB"]]
-
-t3 = [Person "Danny" ["TB", "BK"],
-    Person "Sarah" ["TB"],
-    Person "Cham" ["TB", "BK"],
-    Person "Joe"  ["BK"]]
-
-t2 = Person "Cham" (map show [1..1000]) : map (\x -> Person (show x) [show x]) [1..1000]
 
 printSolution :: M.Map Resturant [Name] -> IO ()
 printSolution sol = do

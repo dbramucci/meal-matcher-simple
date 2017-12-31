@@ -7,6 +7,11 @@ import           Data.List.Split (splitOn)
 import qualified Data.Map        as M
 import           Lib
 
+main :: IO ()
+main = do
+   people <- readInput
+   let res = bestSolutions people
+   mapM_ printSolution res
 
 printSolution :: Plan -> IO ()
 printSolution sol = do
@@ -21,20 +26,12 @@ printResturant (res, names) = do
 
 readInput :: IO [Person]
 readInput = do
-  numberOfPeople <- read <$> getLine
-  replicateM numberOfPeople $ do
-    raw <- getLine
-    let [name, resturantsRaw] = trim <$> splitOn ":" raw
-    let resturants = trim <$> splitOn "," resturantsRaw
-    return $ Person name resturants
-  where
-    trim :: String -> String
-    trim = f . f
-       where f = reverse . dropWhile isSpace
-
-
-main :: IO ()
-main = do
-   people <- readInput
-   let res = bestSolutions people
-   mapM_ printSolution res
+    numberOfPeople <- read <$> getLine
+    replicateM numberOfPeople $ do
+        raw <- getLine
+        let [name, resturantsRaw] = trim <$> splitOn ":" raw
+        let resturants = trim <$> splitOn "," resturantsRaw
+        return $ Person name resturants
+  where trim :: String -> String
+        trim = f . f
+           where f = reverse . dropWhile isSpace

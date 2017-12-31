@@ -26,22 +26,28 @@ filterOutSingles people = people'
           onePersonRest :: Plan
           onePersonRest = M.filter (\patrons -> length patrons == 1) (potentialPatrons people)
 
-possibleAnswers :: [Person] -> [Plan]
-possibleAnswers [] = [M.empty]
-possibleAnswers (Person _ []:people) = possibleAnswers people -- Ignore people with no resturant to go to.
-possibleAnswers (p:people) = do
+possibleAnswers' :: [Person] -> [Plan]
+possibleAnswers' [] = [M.empty]
+possibleAnswers' (Person _ []:people) = possibleAnswers' people -- Ignore people with no resturant to go to.
+possibleAnswers' (p:people) = do
   let Person name rests = p
   r <- rests
-  ans <- possibleAnswers people
+  ans <- possibleAnswers' people
   return $ M.alter (\x -> Just $ name:fromMaybe [] x) r ans
 
-bestSolutions :: [Person] -> [Plan]
-bestSolutions people = case allSolutions of
+possibleAnswers :: [Person] -> [Plan]
+possibleAnswers = map (M.filter (\x -> length x >= 2)) . possibleAnswers'
+
+bestSolutions' :: [Person] -> [Plan]
+bestSolutions' people = case allSolutions of
                            [] -> []
                            first:_ -> let n = numberOfHappy first in takeWhile (\x
                             -> numberOfHappy x == n) allSolutions
   where allSolutions = reverse . sortOn numberOfHappy .
-                       possibleAnswers . filterOutSingles $ people
+                       possibleAnswers' . filterOutSingles $ people
+
+bestSolutions :: [Person] -> [Plan]
+bestSolutions = map (M.filter (\x -> length x >= 2)) . bestSolutions'
 
 numberOfHappy :: Plan -> Int
 numberOfHappy = M.foldl' (\s x -> if length x > 1 then s + length x else s) 0

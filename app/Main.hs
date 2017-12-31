@@ -9,7 +9,7 @@ import           Lib
 
 main :: IO ()
 main = do
-   people <- readInput
+   people <- readPeople
    let res = bestSolutions people
    mapM_ printSolution res
 
@@ -24,8 +24,8 @@ printResturant (res, names) = do
     putStr $ res ++ ": "
     putStrLn $ intercalate ", " names
 
-readInput :: IO [Person]
-readInput = do
+readPeople :: IO [Person]
+readPeople = do
     numberOfPeople <- read <$> getLine
     replicateM numberOfPeople $ do
         raw <- getLine

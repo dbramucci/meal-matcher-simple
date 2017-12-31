@@ -37,10 +37,9 @@ you only have to choose one.
       number of happy people possible.
 
 ## Examples
-Format
+### Format
 
 Problem
-
 * Person
   * Restaurants liked
 * Person
@@ -70,6 +69,7 @@ Solutions
   * Taco Bell
     * Alice, Bob
 
+### Example 2
 Problem
 * Alice
   * Taco Bell
@@ -86,7 +86,7 @@ Solutions
   * Burger King
     * Bob, Charlie
 
-
+### Example 3
 Problem
 * Adam
   * McDonalds

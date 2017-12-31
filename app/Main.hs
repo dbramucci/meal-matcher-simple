@@ -8,7 +8,7 @@ import qualified Data.Map        as M
 import           Lib
 
 
-printSolution :: M.Map Resturant [Name] -> IO ()
+printSolution :: Plan -> IO ()
 printSolution sol = do
     putStrLn "Solution: "
     mapM_ printResturant (M.toList sol)
@@ -31,7 +31,6 @@ readInput = do
     trim :: String -> String
     trim = f . f
        where f = reverse . dropWhile isSpace
-
 
 
 main :: IO ()
